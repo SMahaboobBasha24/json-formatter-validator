@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSON Formatter</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+textarea{
+width:700px;
+height:200px;
+padding:10px;
+border-radius:6px;
+border:none;
+margin-top:15px;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.format{
+background:#22c55e;
+color:white;
+}
+
+.clear{
+background:#ef4444;
+color:white;
+}
+
+#message{
+margin-top:10px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🧾 JSON Formatter & Validator</h1>
+
+<textarea id="jsonInput" placeholder="Paste your JSON here..."></textarea>
+
+<br>
+
+<button class="format" onclick="formatJSON()">Format JSON</button>
+<button class="clear" onclick="clearText()">Clear</button>
+
+<div id="message"></div>
+
+<script>
+
+function formatJSON(){
+
+let input = document.getElementById("jsonInput").value
+
+try{
+
+let parsed = JSON.parse(input)
+
+let formatted = JSON.stringify(parsed, null, 4)
+
+document.getElementById("jsonInput").value = formatted
+
+document.getElementById("message").innerText = "✅ Valid JSON"
+
+document.getElementById("message").style.color = "lightgreen"
+
+}
+
+catch(error){
+
+document.getElementById("message").innerText = "❌ Invalid JSON"
+
+document.getElementById("message").style.color = "red"
+
+}
+
+}
+
+function clearText(){
+
+document.getElementById("jsonInput").value = ""
+
+document.getElementById("message").innerText = ""
+
+}
+
+</script>
+
+</body>
+</html>
